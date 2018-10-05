@@ -5,9 +5,31 @@ import * as Material from '@angular/material';
 @NgModule({
   imports: [
     CommonModule,
-    Material.MatToolbarModule
+    Material.MatToolbarModule,
+    Material.MatGridListModule,
+    Material.MatFormFieldModule,
+    Material.MatInputModule,
+    Material.MatRadioModule,
+    Material.MatSelectModule,
+    Material.MatDatepickerModule,
+    Material.MatCheckboxModule,
+    Material.MatNativeDateModule,
+    Material.MatButtonModule
   ],
-  exports :[Material.MatToolbarModule
+  exports :[ 
+    Material.MatToolbarModule, 
+    Material.MatGridListModule, 
+    Material.MatInputModule, 
+    Material.MatFormFieldModule,
+    Material.MatRadioModule,
+    Material.MatSelectModule,
+    Material.MatDatepickerModule,
+    Material.MatCheckboxModule,
+    Material.MatNativeDateModule,
+    Material.MatButtonModule
+
+
+
   ],
   declarations: []
 })
