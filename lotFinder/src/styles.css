@@ -25,3 +25,8 @@ mat-radio-group mat-radio-button {
 .button-row button {
     margin: 5px;
 }
+
+snack-bar-container.success {
+    background-color : #5cb85c;
+    color: #fff; 
+}
