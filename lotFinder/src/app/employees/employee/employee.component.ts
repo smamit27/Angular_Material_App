@@ -24,8 +24,6 @@ export class EmployeeComponent implements OnInit {
   onSubmit() {
     if(this.employeeService.form.valid) {
       this.employeeService.insertEmployee(this.employeeService.form.value);
-      debugger;
-
       this.employeeService.form.reset();
       this.employeeService.initializeFormGroup();
       this.notificationService.success(':: submitted Succesfully');
