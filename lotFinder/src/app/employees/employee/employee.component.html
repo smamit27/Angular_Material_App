@@ -45,8 +45,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <div class="add-bottom-padding">
-        <mat-checkbox forControlName="isPermanent">Permament Employee</mat-checkbox>
-      </div>
+        <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>      </div>
       <div class="button-row ">
         <button mat-raised-button color="primary" [disabled]="employeeService.form.invalid" type="submit">Submit</button>
         <button mat-raised-button color="warn" (click)="onClear()">Clear</button>

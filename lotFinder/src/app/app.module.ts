@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -12,12 +12,14 @@ import { EmployeeComponent } from './employees/employee/employee.component';
 import { EmployeeService } from './shared/employee.service';
 import { environment} from '../environments/environment';
 import { DepartmentService } from './shared/department.service';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    EmployeeListComponent
     
     
   ],
@@ -25,6 +27,7 @@ import { DepartmentService } from './shared/department.service';
     BrowserModule,
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
