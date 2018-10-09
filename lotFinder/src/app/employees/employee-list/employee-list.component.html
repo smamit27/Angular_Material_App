@@ -1,6 +1,6 @@
 <div class="search-div">
-  <button mat-raised-button>
-    <mat-icon>add</mat-icon>Create
+  <button mat-raised-button  (click)="openDialog()">
+    <mat-icon >add</mat-icon>Create
   </button>
   <mat-form-field class="search-form-field" floatlabel="never">
     <input matInput [(ngModel)]= "searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
@@ -27,6 +27,10 @@
     <ng-container matColumnDef="city">
       <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.city}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="departmentName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Departments</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.departmentName}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>

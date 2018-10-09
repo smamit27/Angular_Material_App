@@ -22,9 +22,8 @@ import { EmployeeListComponent } from './employees/employee-list/employee-list.c
     EmployeesComponent,
     EmployeeComponent,
     EmployeeListComponent
-    
-    
   ],
+  entryComponents: [EmployeeComponent],
   imports: [
     BrowserModule,
     MaterialModule,
