@@ -11,8 +11,13 @@ export class NotificationService {
     horizontalPosition : 'right',
     verticalPosition : 'top'
   }
-  success(mes) {
+  success(message) {
     this.config['panelClass'] = ['notification','success'];
-    this.snackBar.open(mes,'',this.config);
+    this.snackBar.open(message,'',this.config);
+  }
+  delete(message) {
+    this.config['panelClass'] = ['notification','warn'];
+    this.snackBar.open(message,'',this.config);
+
   }
 }

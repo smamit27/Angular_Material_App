@@ -32,13 +32,17 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Departments</mat-header-cell>
       <mat-cell *matCellDef="let element">{{element.departmentName}}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="hireDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Hire Date</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.hireDate}}</mat-cell>
+    </ng-container>
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onUpdate(row)">
           <mat-icon>launch</mat-icon>
         </button>
-        <button mat-icon-button color="warn">
+        <button mat-icon-button color="warn" (click)= "onDelete(row.$key)">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </mat-cell>

@@ -1,8 +1,9 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from '../../shared/employee.service';
-import { MatTableDataSource, MatSort , MatPaginator, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { EmployeeComponent } from '../employee/employee.component';
-import {DepartmentService} from '../../shared/department.service';
+import { DepartmentService } from '../../shared/department.service';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,27 +12,30 @@ import {DepartmentService} from '../../shared/department.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService ,public dialog: MatDialog,private departmentService : DepartmentService) { }
-  listData : MatTableDataSource<any>;
+  constructor(private employeeService: EmployeeService, 
+              public dialog: MatDialog, 
+              private departmentService: DepartmentService,
+              private notificationService:NotificationService) { }
+  listData: MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['fullName','email','mobile','city','departmentName','actions'];
+  displayedColumns: string[] = ['fullName', 'email', 'mobile', 'city', 'departmentName', 'hireDate', 'actions'];
   searchKey: string;
 
   ngOnInit() {
     this.employeeService.getEmployees().subscribe(
       list => {
-        let array  = list.map(item => {
+        let array = list.map(item => {
           let departmentName = this.departmentService.getDepartmentName(item.payload.val()['department']);
           return {
-            $key : item.key,
+            $key: item.key,
             departmentName: departmentName,
             ...item.payload.val()
           };
         });
-          this.listData = new MatTableDataSource(array);
-          this.listData.sort = this.sort;
-          this.listData.paginator = this.paginator;
+        this.listData = new MatTableDataSource(array);
+        this.listData.sort = this.sort;
+        this.listData.paginator = this.paginator;
       });
   }
   onSearch() {
@@ -41,13 +45,30 @@ export class EmployeeListComponent implements OnInit {
   }
   applyFilter() {
     this.listData.filter = this.searchKey.trim().toLowerCase();
+    this.employeeService.initializeFormGroup();
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(EmployeeComponent, {
-      height: '400px',
-      width: '600px',
-    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    let dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
+  }
+  onUpdate(employee) {
+    this.employeeService.populateForm(employee);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    let dialogRef = this.dialog.open(EmployeeComponent, dialogConfig);
+
+  }
+
+  onDelete(key) {
+    this.employeeService.deleteEmployee(key);
+    this.notificationService.delete(':: Delete Succesfully');
+
 
   }
 
